@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="author" content="Into the Hidden Layers">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="icon" href="images/favicon.png">
+
+  <title>Into the Hidden Layers</title>
+
+
+
+<style>
+/* Style for submission bullet points */
+.submission-types {
+  margin-left: 20px;       /* indents the bullets */
+  margin-bottom: 30px;     /* space below the list */
+  line-height: 1.6;        /* easier to read */
+  font-size: 16px;         /* consistent with page text */
+}
+
+.submission-types li {
+  margin-bottom: 15px;     /* space between bullets */
+}
+.schedule-container {
+  max-width: 700px;       /* slightly smaller */
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: separate;  /* smoother rounded corners */
+  border-spacing: 0;
+  border-radius: 3px;        /* rounded corners for table */
+  overflow: hidden;            /* needed for border-radius */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* subtle shadow */
+}
+
+.schedule-table th,
+.schedule-table td {
+  padding: 8px 10px;           /* slightly smaller */
+  text-align: left;
+  vertical-align: top;
+}
+
+.schedule-table th {
+  background-color: #f5f5f5ef;  /* softer than before */
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.schedule-table td {
+  background-color: #ffffff76;
+  font-size: 14px;
+}
+
+.schedule-table tr:nth-child(even) td {
+  background-color: rgba(250, 250, 250, 0.823);  /* gentle stripe */
+}
+
+@media (max-width: 600px) {
+  .schedule-table th,
+  .schedule-table td {
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+}
+
+.image-grid-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;           /* space between images */
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 10px;        /* optional outer padding */
+}
+
+.grid-item {
+  padding: 20px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin-bottom: 30px; /* adds space between items */
+  text-align: center;
+}
+
+.grid-item img {
+  width: 50%;
+  height: auto;
+  display: block;
+  margin: 0 auto;   /* THIS centers it */
+  border-radius: 3px;
+  opacity: 90%;
+}
+
+.caption {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Mobile: stack into 1 column */
+@media (max-width: 600px) {
+  .image-grid-2x2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 40px 0;
+  margin-top: 20px;   /* space above */
+  margin-bottom: 20px; /* space below */
+}
+
+.image-grid .grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.image-grid img {
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 10px; /* slightly smaller than container */
+}
+
+/* FIXED IMAGE AREA */
+.image-grid .grid-item img {
+  width: 100%;
+  height: 180px;          /* same height for all */
+  object-fit: contain;    /* keeps full image, no cropping */
+  background: transparent;
+  margin-bottom: 10px;
+}
+
+/* Caption styling */
+.image-grid .caption {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #333;
+  margin-bottom: 0px;
+}
+
+
+.header {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  /* background-image: url('images/teaser.gif'); */
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+}
+
+/* Fullscreen background video */
+.bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* puts it behind everything */
+  opacity: 0.95;
+}
+
+/* Optional: dark overlay for readability */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3); /* adjust darkness */
+  z-index: -1;
+}
+
+.content {
+  max-width: 70%;
+  /* margin: 0 auto; */
+  /* padding: 20px; */
+
+  margin: 40px auto;
+  padding: 30px;
+
+  background: rgba(255, 0, 255, 0.4); /* main fix */
+  border-radius: 2.5px;
+
+  backdrop-filter: blur(25px); /* optional, nice effect */
+}
+
+p1 {
+  font-family: "Times New Roman", Times, serif;
+}
+
+p3 {
+  font-family: 'Courier', Courier, monospace;
+  text-align: center;
+  margin-top: 0px;
+}
+
+.header-overlay h1 {
+  font-size: 42px;
+  margin: 4;
+}
+
+.header-overlay h2 {
+  color: black;
+  /* background: rgba(255,255,255,0.6); */
+  padding: 4px 4px;
+  margin: 0;
+  /* border-radius: 4px; */
+  font-size: 24px;
+}
+
+.title {
+
+}
+
+body {
+  background-color: rgb(255, 255, 255);
+  font-family: "Arial", Arial, Helvetica, sans-serif, serif;
+  background-repeat: no-repeat;
+  opacity: 85%;
+  margin: 0;
+  font-size: 16px;
+}
+  
+  h1 {
+    color: rgb(0, 0, 0);
+    font-size: 17px;
+    /* margin-right: 10px; */
+  }
+
+  h2 {
+  font-size: 1rem; /* scales with root font size */
+  font-family: 'Courier New', Courier, monospace;
+  }
+
+  @media (max-width: 600px) {
+    h2 {
+      font-size: 1rem; /* smaller on phones */
+    }
+  }
+
+  .m {
+    color: rgb(255, 0, 255);
+  }
+
+  td {
+    vertical-align: top; /* Ensures content starts at the top */
+    /* padding: 10px; */
+  }
+  
+  a {
+    color: rgb(0, 225, 255);
+    font-weight: bold;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+  }
+
+  ab {
+    color: rgb(0, 225, 255);
+    font-weight: bold;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+  }
+
+  a:hover {
+      text-decoration: underline;
+  }
+
+  .image-cell {
+    margin-left: 30px;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .project {
+  margin: 25px auto;
+  /* max-width: 900px; */
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.header-overlay {
+  position: absolute;
+  inset: 0; /* fills entire header */
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical center */
+  align-items: center;     /* horizontal center */
+  
+  text-align: center;
+  color: white;
+}
+
+@media (max-width: 700px) {
+  .header {
+    height: 200px;
+  }
+
+  .header h1 {
+    font-size: 18px;
+  }
+
+  .image-grid {
+    grid-template-columns: 1fr; /* stacks vertically */
+  }
+}
+
+.heading {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: left; /* left-aligned */
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.header-overlay .cyan-line {
+  color: rgb(0, 255, 255);
+}
+
+.header-overlay a.link-plain {
+
+  font-size: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+}
+
+/* .content h1, */
+/* .content h2, */
+/* .content h3, */
+.content p {
+  margin-top: 0.5em;    /* less than default */
+  margin-bottom: 0.5em; /* less than default */
+}
+</style>
+</head>
+
+
+
+
+
+
+<body>
+
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="images/teaser.mov" type="video/mp4">
+  </video>
+
+  <div class="header">
+    <div class="header-overlay">
+      <h1>Into the Hidden Layers: Creative Futures with the Mechanistic Material of AI</h1>
+      <h2>Workshop at the 
+        <a href="https://cc.acm.org/2026/" class="link-plain">ACM Creativity and Cognition Conference 2026</a> [July 13th]
+      </h2>
+      <h2>In-person, at Central Saint Martins, University of the Arts London.</h2>
+    </div>
+  </div>
+
+
+  <div class="content">
+<!-- <h1>Imke Grabe</h1> -->
+<!-- <a href="https://imkegrabe.github.io" target="_blank"><img src="images/logo-cool.svg" style="max-width:300px; min-width: 300px; margin: 0px;"></a><p3>[she/her]</p3> -->
+<!-- <p><b>Imke Grabe</b> (she/her)</p> -->
+
+<h2 class="heading">About</h2>
+
+<p>
+
+With the introduction of complex AI systems, generative technologies used in creative processes have become more obscured through their many hidden layers.
+However, below the surface of AI technologies lie rich material characteristics, that we have yet to explore.
+<br><br>
+This workshop invites the community to explore alternative modes of creating with AI by approaching the hidden layers as a <strong>mechanistic material</strong> for design.
+
+Existing XAI approaches often talk <em>around</em> the material of AI systems by trying to <em>explain</em> the behaviour of the hidden layers for reasons of efficiency, simplication, or user-friendliness.
+
+To approach this gap, this workshop proposes to explore what better conditions for such manipulation might look like, especially for creative practitioners.
+By <strong>centering the materiality of AI systems rather than explaining their opacity</strong>, 
+we propose to consider the hidden layers of neural networks as directly manipulable material for creation and explore on the interventions and interfaces that enable users to manipulate these systems' inner workings.
+
+<br><br>
+We prompt researchers ranging from the technical field of mechanistic interpretability to interaction design and beyond to explore the questions:
+<br>
+</p>
+
+<ul class="submission-types">
+  <li>
+    <strong><em>How can you investigate the material properties of the hidden layers?</em></strong>
+   
+  </li>
+  <li>
+    <strong><em>How could you imagine interacting with the material hidden inside the layers of neural networks?</em></strong>
+  </li>  
+</ul>
+
+
+<h2 class="heading">Call for Participation</h2>
+<p>
+  To participate in the workshop, researchers and designers from various domains are invited to submit their work.
+  We welcome submissions that explore co-creation via AI's hidden layers through any kind of modalities, such as <em>music, textual, visual, voice, code-based, bio-signals, sensor data, and multimodal systems</em>.
+</p>
+These can take the form of
+
+<ul class="submission-types">
+  <li>
+    <strong>material investigations</strong> of <strong>technical</strong> character (e.g., using interpretability methods) that explore the internal mechanistics of AI systems. For examples, see relevant research. Submissions can present results of material investigations, describe the development of tools like interfaces, artworks, or other products, or document the actions taken during the process. We also encourage submissions of failed approaches documenting the difficulty of entering the hidden layers of neural networks.
+  </li>
+  <li>
+    <strong>interaction imaginaries</strong> of <strong>speculative</strong> character that propose alternative forms of co-creation. Submissions can draw on metaphors to existing digital or physical tools (e.g., the layers in Photoshop or looms) or present fictive design scenarios. Dystopian imaginaries that critically explore the potential negative effects of material gateways into AI's hidden layers are also encouraged.
+  </li>
+</ul>
+</p>
+<p>
+  Submissions are accepted in the following formats:
+</p>
+
+<div class="image-grid">
+  <div class="grid-item">
+    <img src="images/sub-1.png" alt="Submission 1">
+    <div class="caption"><strong>Pictorials</strong>, up to 4 pages <br> (e.g., see <a href="https://dl.acm.org/doi/10.1145/3715336.3735437">here</a>)</div>
+  </div>
+  <div class="grid-item">
+    <img src="images/sub-2.png" alt="Submission 2">
+    <div class="caption"><strong>Computational notebooks</strong> <br> (e.g., see <a href="https://colab.research.google.com/drive/1wNeIf2uVAf179m_q4kqXotMhXof1tQRr?usp=sharing">here</a>)</div>
+  </div>
+  <div class="grid-item">
+    <img src="images/sub-3.png" alt="Submission 3">
+    <div class="caption"><strong>Interactive web articles</strong> <br> (e.g., see <a href="https://distill.pub/2017/feature-visualization/">here</a>)</div>
+  </div>
+  <div class="grid-item">
+    <img src="images/sub-4.png" alt="Submission 4">
+    <div class="caption"><strong>Papers</strong>, up to 4 pages <br> (e.g., see <a href="https://openreview.net/pdf?id=0n9wqVyHas">here</a>)</div>
+  </div>
+</div>
+
+<p>Special emphasis is placed on the representation and visualization in the submissions. As the modalities of the hidden layers are not necessarily natural to human understanding and perception, we invite participants to freely explore how to represent them in various forms.
+
+  In addition to new works, we also encourage authors to submit previously published work (e.g., from technical papers or products) that can be contextualized under the theme of Hidden Layer Interaction.</p>
+
+<p>
+  Submission Deadline: <a href="https://time.is/Anywhere_on_Earth">April 23rd, 2026</a>
+</p>
+
+<p>
+  Please submit your contributions via EasyChair <a href="https://easychair.org/cfp/HiddenLayers2026">here</a>  <strong><p3> [opening soon] </p3></strong>.
+</p>
+
+<p>Submissions do not need to be anonymized. Please use the corresponding templates for  <a href="https://cc.acm.org/2026/papers/">papers</a> and <a href="https://cc.acm.org/2026/pictorials/">pictorials</a>. </p>
+
+
+
+<h2 class="heading">Program</h2>
+
+<p>
+<!-- Trough a material-driven design approach, we aim to connect the theoretical knowledge of the mechanistic material of neural networks into interaction design practice.  -->
+The activities of the workshop unfold across a full day, and move the participants from a shared grounding in a technical vocabulary to speculative representations and material explorations, and finally toward a collective cartography of interactions with the hidden layers.  
+</p>
+  <div class="grid-item">
+    <img src="images/part1.png" alt="Image 1">
+    <div class="caption">
+      <strong>Part 1:</strong>
+      The first part of the workshop aims to lay a common ground for the following conversations by approaching the question:
+      <br> <em>How can we develop a shared language for what lies hidden within the layers of neural networks?</em> <br>
+      A technical vocabulary will serve as an entry into the hidden layers of AI.</div>
+  </div>
+
+
+
+  <div class="grid-item">
+    <img src="images/part2.png" alt="Image 2">
+    <div class="caption">
+      <strong>Part 2:</strong>
+        After building a visual repertoire to represent hidden layers, <br> participants present how they investigate the material of AI and imagine interactions with the hidden layers in various domains. <br>
+      Through this, we aim to identify <em>ways of tinkering with and thinking about the hidden layers</em> as a material for design. 
+    </div>
+
+  </div>
+  <div class="grid-item">
+    <img src="images/part3.png" alt="Image 3">
+    <div class="caption">
+      <strong>Part 3:</strong>
+      To connect the contributions of speculative and technical nature, the next step applies the previously introduced vocabulary to the participants' material investigations and interaction imaginaries.
+      Using physical means, such as drawings, we aim to explore: 
+      <em>How can a shared vocabulary help us articulate material approaches into the hidden layers?</em>
+    </div>
+  </div>
+  <div class="grid-item">
+    <img src="images/part4.png" alt="Image 4">
+    <div class="caption">
+      <strong>Part 4:</strong>
+      After systemizing participants' approaches through the shared vocabulary, the final part of the workshop aims to synthesize them into a cohesive whole through cartographic mapping.
+      By mapping design and technical elements together to situate the possibilities and phases of interaction, we will identify future research directions to answer:
+      <em>How can we design interactions through the hidden layers of neural networks?</em>
+
+    </div>
+  </div>
+
+  <h2 class="heading">Tentative Schedule</h2>
+
+  <p>The workshop takes place in person at Central Saint Martins, University of the Arts London on July 13th, 2026.
+  </p>
+  <div class="schedule-container">
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Activity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>9:00–9:30</td>
+          <td><strong>Welcome:</strong> Introduction of organizers and participants</td>
+        </tr>
+        <tr>
+          <td>9:30–10:30</td>
+          <td><strong>Part 1:</strong> Entering the Hidden Layers through a shared vocabulary</td>
+        </tr>
+        <tr>
+          <td>10:30–10:45</td>
+          <td><strong>Coffee break</strong></td>
+        </tr>
+        <tr>
+          <td>10:45–12:00</td>
+          <td>
+            <strong>Part 2:</strong> Investigating the material and imagining interactions with it<br>
+            <em>Participant Presentations</em> (5 min presentation, 5 min questions)
+          </td>
+        </tr>
+        <tr>
+          <td>12:00–13:00</td>
+          <td><strong>Lunch</strong></td>
+        </tr>
+        <tr>
+          <td>13:00–14:30</td>
+          <td><strong>Part 3:</strong> Systemizing investigations and imaginaries through the vocabulary</td>
+        </tr>
+        <tr>
+          <td>14:30–14:45</td>
+          <td><strong>Coffee break</strong></td>
+        </tr>
+        <tr>
+          <td>14:45–16:00</td>
+          <td><strong>Part 4:</strong> Creating a cartography of the Hidden Layers for co-creation</td>
+        </tr>
+        <tr>
+          <td>16:00–16:30</td>
+          <td><strong>Goodbye:</strong> Concluding remarks and community building</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<h2 class="heading">Contact</h2>
+For more information and questions, please reach out to Imke: <strong><p3> imgr [at] itu.dk </p3></strong> <br> 
+We are looking forward to receive your contributions! <p3>:)</p3>
+
+<h2 class="heading">Workshop Organizers</h2>
+  <section class="organizers">
+
+    <div class="organizer-card">
+      <p><strong>Imke Grabe</strong> is a Ph.D. Candidate at the IT University of Copenhagen's HCI and Design Section. Her project <em>Hidden Layer Interaction</em> proposes a novel technique for co-creating with generative AI via models' neurons. Bridging mechanistic interpretability and human-computer interaction, her work draws on methods from computer vision and design research to move beyond common prompting techniques towards an experiential understanding of AI's inner workings.</p>
+    </div>
+  
+    <div class="organizer-card">
+      <p><strong>Gabrielle Benabdallah</strong> is an Alfred P. Sloan Postdoctoral Fellow at the University of Washington, building tools and conducting ethnographic research on how AI mediates scientific reading practices. Her work investigates the material conditions of knowledge production, from early writing technologies to machine learning, at the intersection of HCI, comparative media studies, and philosophy of technology.</p>
+    </div>
+  
+    <div class="organizer-card">
+      <p><strong>Alayt Issak</strong> is a Ph.D. Candidate in Interdisciplinary Design and Media at Northeastern University. Her research spans AI, ethics, and creativity, incorporating HCI and creative practice methods. She develops a design philosophy for AI ethics applicable to co-creative system designers, policymakers, and researchers. Recipient of the Graduate Fellowship (2022–2024) as part of the Northeastern Ph.D. Network.</p>
+    </div>
+  
+    <div class="organizer-card">
+      <p><strong>Ginevra Petrozzi</strong> is a Ph.D. Candidate at Eindhoven University of Technology within the Designing with Intelligence cluster. Her research explores AI, aesthetics, and uncertainty, drawing from fields such as divination and astrology. She is also an independent artist, exhibiting internationally.</p>
+    </div>
+  
+    <div class="organizer-card">
+      <p><strong>James Pierce</strong> is an Associate Professor and Chair of Interaction Design at the University of Washington. His work focuses on interface design and the interactions between people, data, algorithms, and environments. He combines prototyping, qualitative methods, and critical perspectives to address social issues in computing technology.</p>
+    </div>
+  
+    <div class="organizer-card">
+      <p><strong>Troy Nachtigall</strong> is an Assistant Professor in the Wearable Sense Lab at Eindhoven University of Technology. His work explores post-industrial design, personalization, and data-enabled technologies to enhance sensing, craft, and fabrication of embodied artifacts at the scale of the body.</p>
+    </div>
+  
+    <div class="organizer-card">
+      <p><strong>Tom Jenkins</strong> is Associate Professor of Interaction Design at the IT University of Copenhagen, leading the IxD Lab. He combines community-based design research with cultural and critical theory to produce speculative artifacts that explore relationships between people and devices.</p>
+    </div>
+  
+    <div class="organizer-card">
+      <p><strong>Jesse Josua Benjamin</strong> is an Assistant Professor in the Designing With Intelligence cluster at Eindhoven University of Technology. His work combines philosophy of technology and design research to investigate aesthetic potentials of emerging technologies, interrogating solidifying design conventions around AI technologies.</p>
+    </div>
+  
+
+</div>
+
+</div>
+
+<div>
+  <p>   &copy;  2026 Imke Grabe. All Rights Reserved.</p>
+</div>
+
+
+<script>
+  const video = document.querySelector('.bg-video');
+  video.playbackRate = 0.65; // 0.5 = half speed
+</script>
+</body>
+
+</html>
+
+
